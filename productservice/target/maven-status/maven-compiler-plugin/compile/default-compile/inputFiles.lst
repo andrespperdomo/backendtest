@@ -1,5 +1,6 @@
 C:\Users\57322\OneDrive\Escritorio\TECHNICAL-TEST-GITFLOW\productservice\src\main\java\com\product\application\command\CreateProductCommand.java
 C:\Users\57322\OneDrive\Escritorio\TECHNICAL-TEST-GITFLOW\productservice\src\main\java\com\product\application\usecase\CreateProductUseCase.java
+C:\Users\57322\OneDrive\Escritorio\TECHNICAL-TEST-GITFLOW\productservice\src\main\java\com\product\application\usecase\GetProductUseCase.java
 C:\Users\57322\OneDrive\Escritorio\TECHNICAL-TEST-GITFLOW\productservice\src\main\java\com\product\domain\model\Product.java
 C:\Users\57322\OneDrive\Escritorio\TECHNICAL-TEST-GITFLOW\productservice\src\main\java\com\product\domain\model\ProductEntityMapper.java
 C:\Users\57322\OneDrive\Escritorio\TECHNICAL-TEST-GITFLOW\productservice\src\main\java\com\product\domain\model\UserProductProjection.java

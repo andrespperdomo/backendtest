@@ -3,6 +3,7 @@ com\product\infrastructure\web\request\CreateProductRequest.class
 com\product\infrastructure\web\response\ProductResponse$Data.class
 com\product\shared\utils\PageResult.class
 com\product\domain\repository\ProductRepository.class
+com\product\application\usecase\GetProductUseCase.class
 com\product\domain\model\Product.class
 com\product\infrastructure\persistence\ProductEntity.class
 com\product\domain\model\UserProductProjection.class

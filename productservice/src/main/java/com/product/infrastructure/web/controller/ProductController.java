@@ -1,14 +1,18 @@
 package com.product.infrastructure.web.controller;
 
+import java.util.Optional;
 import java.util.logging.Logger;
 
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponses;
 
 import com.product.application.command.CreateProductCommand;
 import com.product.application.usecase.CreateProductUseCase;
+import com.product.application.usecase.GetProductUseCase;
 import com.product.domain.model.Product;
 //import com.product.dto.PaginatorDTO;
 //import com.product.dto.ProductDTO;
@@ -23,7 +27,9 @@ import jakarta.inject.Inject;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.POST;
+import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
@@ -35,6 +41,9 @@ public class ProductController {
 
     @Inject
     CreateProductUseCase createProductUseCase;
+
+    @Inject
+    GetProductUseCase getProductUseCase;
 
     @Inject
     ProductMapper mapper;
@@ -56,6 +65,27 @@ public class ProductController {
                 .status(Response.Status.CREATED)
                 .entity(response)
                 .build();
+    }
+
+    @GET
+    @Path("/{id}")
+    @Operation(summary = "Get product by ID", description = "Returns a product based on its ID")
+    @APIResponses(value = {
+            @APIResponse(responseCode = "200", description = "Product found", content = @Content(schema = @Schema(implementation = ProductResponse.class))),
+            @APIResponse(responseCode = "404", description = "Product not found"),
+            @APIResponse(responseCode = "500", description = "Internal server error")
+    })
+    public Response getById(
+            @Parameter(description = "Product ID", required = true) @PathParam("id") String id) {
+        Optional<Product> productOpt = getProductUseCase.execute(id);
+
+        if (productOpt.isEmpty()) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+
+        ProductResponse response = mapper.toResponse(productOpt.get());
+
+        return Response.ok(response).build(); // 200 OK
     }
 
 }
