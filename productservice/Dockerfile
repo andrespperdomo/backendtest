@@ -24,7 +24,7 @@ WORKDIR /apps
 COPY target/quarkus-app/ /app/
 
 # Copy JWT keys
-COPY src/main/resources/keys /deployments/keys
+#COPY src/main/resources/keys /deployments/keys
 
 EXPOSE 8080
 

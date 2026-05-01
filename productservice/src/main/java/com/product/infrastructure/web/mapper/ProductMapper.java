@@ -14,7 +14,7 @@ public interface ProductMapper {
 
     // 🔹 Domain → JSON API Response
     @Mapping(target = "data.type", constant = "products")
-    @Mapping(target = "data.id", expression = "java(String.valueOf(product.id))")
+    @Mapping(target = "data.id", source = "id")
     @Mapping(target = "data.attributes.name", source = "name")
     @Mapping(target = "data.attributes.price", source = "price")
     @Mapping(target = "data.attributes.description", source = "description")
