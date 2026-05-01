@@ -19,9 +19,10 @@ public class CreateProductUseCase {
 
     public Product execute(CreateProductCommand command) {
         Product product = new Product(
+                "",
                 command.name(),
-                command.price(),
                 command.description(),
+                command.price(),
                 command.cost());
         return repository.save(product);
     }

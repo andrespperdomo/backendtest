@@ -18,7 +18,6 @@ import com.product.infrastructure.web.request.CreateProductRequest;
 //import com.product.infrastructure.web.request.ListProductRequest;
 //import com.product.infrastructure.web.response.ProductListResponse;
 import com.product.infrastructure.web.response.ProductResponse;
-import com.product.shared.utils.PageResult;
 
 import jakarta.inject.Inject;
 import jakarta.validation.Valid;
@@ -43,9 +42,16 @@ public class ProductController {
     Logger LOG = Logger.getLogger(ProductController.class.getName());
 
     @POST
+<<<<<<< HEAD
     @Operation(summary = "Create product", description = "Creates a new product")
     @APIResponse(responseCode = "201", description = "Product created", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ProductResponse.class)))
     @APIResponse(responseCode = "400", description = "Invalid input")
+=======
+    @Operation(summary = "Create product", description = "Creates a new product in the system")
+    @APIResponse(responseCode = "201", description = "Product created", content = @Content(schema = @Schema(implementation = ProductResponse.class)))
+    @APIResponse(responseCode = "400", description = "Invalid input data")
+    @APIResponse(responseCode = "500", description = "Internal server error")
+>>>>>>> feature/create-product
     public Response create(@Valid CreateProductRequest request) {
         CreateProductCommand command = mapper.toCommand(request);
 
