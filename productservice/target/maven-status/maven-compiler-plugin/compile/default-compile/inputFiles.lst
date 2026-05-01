@@ -1,0 +1,15 @@
+C:\Users\57322\OneDrive\Escritorio\TECHNICAL-TEST-GITFLOW\productservice\src\main\java\com\product\application\command\CreateProductCommand.java
+C:\Users\57322\OneDrive\Escritorio\TECHNICAL-TEST-GITFLOW\productservice\src\main\java\com\product\application\usecase\CreateProductUseCase.java
+C:\Users\57322\OneDrive\Escritorio\TECHNICAL-TEST-GITFLOW\productservice\src\main\java\com\product\domain\model\Product.java
+C:\Users\57322\OneDrive\Escritorio\TECHNICAL-TEST-GITFLOW\productservice\src\main\java\com\product\domain\model\ProductEntityMapper.java
+C:\Users\57322\OneDrive\Escritorio\TECHNICAL-TEST-GITFLOW\productservice\src\main\java\com\product\domain\model\UserProductProjection.java
+C:\Users\57322\OneDrive\Escritorio\TECHNICAL-TEST-GITFLOW\productservice\src\main\java\com\product\domain\model\Users.java
+C:\Users\57322\OneDrive\Escritorio\TECHNICAL-TEST-GITFLOW\productservice\src\main\java\com\product\domain\repository\ProductRepository.java
+C:\Users\57322\OneDrive\Escritorio\TECHNICAL-TEST-GITFLOW\productservice\src\main\java\com\product\infrastructure\config\OpenApiConfig.java
+C:\Users\57322\OneDrive\Escritorio\TECHNICAL-TEST-GITFLOW\productservice\src\main\java\com\product\infrastructure\persistence\ProductEntity.java
+C:\Users\57322\OneDrive\Escritorio\TECHNICAL-TEST-GITFLOW\productservice\src\main\java\com\product\infrastructure\persistence\ProductRepositoryImpl.java
+C:\Users\57322\OneDrive\Escritorio\TECHNICAL-TEST-GITFLOW\productservice\src\main\java\com\product\infrastructure\web\controller\ProductController.java
+C:\Users\57322\OneDrive\Escritorio\TECHNICAL-TEST-GITFLOW\productservice\src\main\java\com\product\infrastructure\web\mapper\ProductMapper.java
+C:\Users\57322\OneDrive\Escritorio\TECHNICAL-TEST-GITFLOW\productservice\src\main\java\com\product\infrastructure\web\request\CreateProductRequest.java
+C:\Users\57322\OneDrive\Escritorio\TECHNICAL-TEST-GITFLOW\productservice\src\main\java\com\product\infrastructure\web\response\ProductResponse.java
+C:\Users\57322\OneDrive\Escritorio\TECHNICAL-TEST-GITFLOW\productservice\src\main\java\com\product\shared\utils\PageResult.java
