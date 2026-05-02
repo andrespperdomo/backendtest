@@ -11,6 +11,9 @@ RUN mvn dependency:go-offline
 # Copy source code
 COPY src ./src
 
+# Run tests here
+RUN mvn clean test
+
 # Build Quarkus app
 RUN mvn package -DskipTests
 

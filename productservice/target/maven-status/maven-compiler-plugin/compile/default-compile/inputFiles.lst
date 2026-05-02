@@ -1,6 +1,8 @@
 C:\Users\57322\OneDrive\Escritorio\TECHNICAL-TEST-GITFLOW\productservice\src\main\java\com\product\application\command\CreateProductCommand.java
+C:\Users\57322\OneDrive\Escritorio\TECHNICAL-TEST-GITFLOW\productservice\src\main\java\com\product\application\command\ListProductCommand.java
 C:\Users\57322\OneDrive\Escritorio\TECHNICAL-TEST-GITFLOW\productservice\src\main\java\com\product\application\usecase\CreateProductUseCase.java
 C:\Users\57322\OneDrive\Escritorio\TECHNICAL-TEST-GITFLOW\productservice\src\main\java\com\product\application\usecase\GetProductUseCase.java
+C:\Users\57322\OneDrive\Escritorio\TECHNICAL-TEST-GITFLOW\productservice\src\main\java\com\product\application\usecase\ListProductUseCase.java
 C:\Users\57322\OneDrive\Escritorio\TECHNICAL-TEST-GITFLOW\productservice\src\main\java\com\product\domain\model\Product.java
 C:\Users\57322\OneDrive\Escritorio\TECHNICAL-TEST-GITFLOW\productservice\src\main\java\com\product\domain\model\ProductEntityMapper.java
 C:\Users\57322\OneDrive\Escritorio\TECHNICAL-TEST-GITFLOW\productservice\src\main\java\com\product\domain\model\UserProductProjection.java
@@ -10,7 +12,11 @@ C:\Users\57322\OneDrive\Escritorio\TECHNICAL-TEST-GITFLOW\productservice\src\mai
 C:\Users\57322\OneDrive\Escritorio\TECHNICAL-TEST-GITFLOW\productservice\src\main\java\com\product\infrastructure\persistence\ProductEntity.java
 C:\Users\57322\OneDrive\Escritorio\TECHNICAL-TEST-GITFLOW\productservice\src\main\java\com\product\infrastructure\persistence\ProductRepositoryImpl.java
 C:\Users\57322\OneDrive\Escritorio\TECHNICAL-TEST-GITFLOW\productservice\src\main\java\com\product\infrastructure\web\controller\ProductController.java
+C:\Users\57322\OneDrive\Escritorio\TECHNICAL-TEST-GITFLOW\productservice\src\main\java\com\product\infrastructure\web\mapper\ListProductMapper.java
 C:\Users\57322\OneDrive\Escritorio\TECHNICAL-TEST-GITFLOW\productservice\src\main\java\com\product\infrastructure\web\mapper\ProductMapper.java
 C:\Users\57322\OneDrive\Escritorio\TECHNICAL-TEST-GITFLOW\productservice\src\main\java\com\product\infrastructure\web\request\CreateProductRequest.java
+C:\Users\57322\OneDrive\Escritorio\TECHNICAL-TEST-GITFLOW\productservice\src\main\java\com\product\infrastructure\web\request\ListProductRequest.java
+C:\Users\57322\OneDrive\Escritorio\TECHNICAL-TEST-GITFLOW\productservice\src\main\java\com\product\infrastructure\web\response\Meta.java
+C:\Users\57322\OneDrive\Escritorio\TECHNICAL-TEST-GITFLOW\productservice\src\main\java\com\product\infrastructure\web\response\ProductListResponse.java
 C:\Users\57322\OneDrive\Escritorio\TECHNICAL-TEST-GITFLOW\productservice\src\main\java\com\product\infrastructure\web\response\ProductResponse.java
 C:\Users\57322\OneDrive\Escritorio\TECHNICAL-TEST-GITFLOW\productservice\src\main\java\com\product\shared\utils\PageResult.java

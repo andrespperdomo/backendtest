@@ -11,17 +11,23 @@ import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponses;
 
 import com.product.application.command.CreateProductCommand;
+import com.product.application.command.ListProductCommand;
 import com.product.application.usecase.CreateProductUseCase;
 import com.product.application.usecase.GetProductUseCase;
+import com.product.application.usecase.ListProductUseCase;
 import com.product.domain.model.Product;
+import com.product.infrastructure.web.mapper.ListProductMapper;
+import com.product.infrastructure.web.request.ListProductRequest;
 //import com.product.dto.PaginatorDTO;
 //import com.product.dto.ProductDTO;
 //import com.product.infrastructure.web.mapper.ListProductMapper;
 import com.product.infrastructure.web.mapper.ProductMapper;
 import com.product.infrastructure.web.request.CreateProductRequest;
+import com.product.infrastructure.web.response.ProductListResponse;
 //import com.product.infrastructure.web.request.ListProductRequest;
 //import com.product.infrastructure.web.response.ProductListResponse;
 import com.product.infrastructure.web.response.ProductResponse;
+import com.product.shared.utils.PageResult;
 
 import jakarta.inject.Inject;
 import jakarta.validation.Valid;
@@ -46,7 +52,13 @@ public class ProductController {
     GetProductUseCase getProductUseCase;
 
     @Inject
+    ListProductUseCase listProductUseCase;
+
+    @Inject
     ProductMapper mapper;
+
+    @Inject
+    ListProductMapper listProductMapper;
 
     Logger LOG = Logger.getLogger(ProductController.class.getName());
 
@@ -86,6 +98,20 @@ public class ProductController {
         ProductResponse response = mapper.toResponse(productOpt.get());
 
         return Response.ok(response).build(); // 200 OK
+    }
+
+    @Operation(summary = "List products", description = "Returns a paginated list of products")
+    @APIResponses(value = {
+            @APIResponse(responseCode = "200", description = "Successful response", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ProductListResponse.class))),
+            @APIResponse(responseCode = "400", description = "Invalid request"),
+            @APIResponse(responseCode = "500", description = "Internal server error")
+    })
+    public Response getListProduct(ListProductRequest request) {
+        LOG.info("getListProduct");
+        ListProductCommand command = listProductMapper.toCommand(request);
+        PageResult<Product> products = listProductUseCase.execute(command);
+        ProductListResponse response = listProductMapper.toResponse(products);
+        return Response.ok(response).build();
     }
 
 }
