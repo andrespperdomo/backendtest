@@ -1,0 +1,44 @@
+package com.product.infrastructure.rabbitmq.producer;
+
+import java.util.List;
+
+import org.eclipse.microprofile.reactive.messaging.Channel;
+import org.eclipse.microprofile.reactive.messaging.Emitter;
+
+import com.product.domain.repository.OutboxRepository;
+import com.product.infrastructure.rabbitmq.model.OutboxEvent;
+
+import io.quarkus.scheduler.Scheduled;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+
+@ApplicationScoped
+public class OutboxProcessor {
+
+    @Inject
+    OutboxRepository repository;
+
+    @Inject
+    RabbitMQPublisher rabbitMQPublisher;
+
+    @Scheduled(every = "5s")
+    void process() {
+
+        List<OutboxEvent> events = repository.findPending();
+
+        for (OutboxEvent event : events) {
+            try {
+                rabbitMQPublisher.publishProductCreated(event).toCompletableFuture()
+                        .join();
+                ;
+
+                event.markSent();
+
+            } catch (Exception e) {
+                event.incrementRetries();
+            }
+
+            repository.save(event);
+        }
+    }
+}
