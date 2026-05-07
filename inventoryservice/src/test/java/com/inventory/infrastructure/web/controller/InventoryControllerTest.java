@@ -56,7 +56,7 @@ class InventoryControllerTest {
         command = new UpdateInventoryCommand("1", 10);
 
         // DOMAIN
-        inventory = new Inventory(1L, "1", 50);
+        inventory = new Inventory("1", 50);
 
         // RESPONSE
         response = new InventoryResponse();

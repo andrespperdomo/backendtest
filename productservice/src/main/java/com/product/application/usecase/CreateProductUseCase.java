@@ -1,6 +1,9 @@
 package com.product.application.usecase;
 
+import org.jboss.logging.Logger;
+
 import com.product.application.command.CreateProductCommand;
+import com.product.application.messaging.EventEnvelope;
 import com.product.domain.model.Product;
 import com.product.domain.repository.OutboxRepository;
 import com.product.domain.repository.ProductRepository;
@@ -11,6 +14,7 @@ import com.product.shared.utils.JsonUtil;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import com.product.domain.event.EventType;
 
 @ApplicationScoped
 public class CreateProductUseCase {
@@ -18,6 +22,8 @@ public class CreateProductUseCase {
     private final ProductRepository repository;
 
     private final OutboxRepository outboxRepository;
+
+    private static final Logger LOG = Logger.getLogger(CreateProductUseCase.class);
 
     @Inject
     public CreateProductUseCase(ProductRepository productRepository, OutboxRepository outboxRepository) {
@@ -27,6 +33,7 @@ public class CreateProductUseCase {
 
     public Product execute(CreateProductCommand command) {
         // 1. Build domain object (NO ID from command)
+        LOG.infof("Create product | productName=%s price=%d", command.name(), command.price());
         Product product = new Product(
                 "",
                 command.name(),
@@ -36,18 +43,22 @@ public class CreateProductUseCase {
 
         // 3. Save product
         Product saved = repository.save(product);
+        LOG.infof("Product saved | productId=%s productName=%d", saved.id(), saved.name());
 
         // 4. Create OUTBOX event
-        ProductCreatedEvent event = new ProductCreatedEvent();
-        event.id = saved.id();
-        event.name = saved.name();
-        event.price = saved.price();
+        ProductCreatedEvent ProductEvent = new ProductCreatedEvent();
+        ProductEvent.id = saved.id();
+        ProductEvent.name = saved.name();
+        ProductEvent.price = saved.price();
+
+        EventEnvelope<ProductCreatedEvent> envelope = new EventEnvelope<>(EventType.PRODUCT_CREATED.name(),
+                ProductEvent);
 
         outboxRepository.save(new OutboxEvent(
                 Long.parseLong(saved.id()),
                 saved.id().toString(),
                 "PRODUCT_CREATED",
-                JsonUtil.toJson(event),
+                JsonUtil.toJson(envelope),
                 Status.PENDING.name(), 0));
         return saved;
     }

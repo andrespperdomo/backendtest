@@ -14,7 +14,7 @@ public interface InventoryMapper {
 
     // 🔹 Domain → JSON API Response
     @Mapping(target = "data.type", constant = "Inventory")
-    @Mapping(target = "data.id", source = "id")
+    // @Mapping(target = "data.id", source = "id")
     @Mapping(target = "data.attributes.idProduct", source = "idProduct")
     @Mapping(target = "data.attributes.quantity", source = "quantity")
     InventoryResponse toResponse(Inventory product);

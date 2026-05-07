@@ -3,8 +3,6 @@ package com.product.infrastructure.persistence;
 import java.util.List;
 
 import com.product.domain.model.OutboxEntityMapper;
-import com.product.domain.model.Product;
-import com.product.domain.model.ProductEntityMapper;
 import com.product.domain.repository.OutboxRepository;
 import com.product.infrastructure.rabbitmq.model.OutboxEvent;
 import com.product.infrastructure.rabbitmq.enums.Status;
@@ -39,7 +37,7 @@ public class OutboxRepositoryImpl implements OutboxRepository {
 
         List<OutboxEventEntity> entities = find(
                 "status = ?1 and retries < ?2",
-                Status.NEW,
+                Status.PENDING.name(),
                 3).list();
 
         return entities.stream()

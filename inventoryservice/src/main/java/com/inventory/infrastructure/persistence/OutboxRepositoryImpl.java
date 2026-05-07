@@ -3,8 +3,6 @@ package com.inventory.infrastructure.persistence;
 import java.util.List;
 
 import com.inventory.domain.model.OutboxEntityMapper;
-import com.inventory.domain.model.Inventory;
-import com.inventory.domain.model.InventoryEntityMapper;
 import com.inventory.domain.repository.OutboxRepository;
 import com.inventory.infrastructure.rabbitmq.model.OutboxEvent;
 import com.inventory.infrastructure.rabbitmq.enums.Status;

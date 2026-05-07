@@ -1,12 +1,13 @@
 package com.inventory.infrastructure.persistence;
 
-import java.util.List;
 import java.util.Optional;
+
+import org.jboss.logging.Logger;
+
+import com.inventory.application.usecase.HandleProductCreatedUseCase;
 import com.inventory.domain.model.Inventory;
 import com.inventory.domain.model.InventoryEntityMapper;
 import com.inventory.domain.repository.InventoryRepository;
-import com.inventory.shared.utils.PageResult;
-
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
@@ -15,17 +16,36 @@ import jakarta.transaction.Transactional;
 @ApplicationScoped
 public class InventoryRepositoryImpl implements InventoryRepository {
 
+    private static final Logger LOG = Logger.getLogger(InventoryRepositoryImpl.class);
+
     @Inject
     EntityManager em;
 
     @Override
     @Transactional
     public Inventory update(Inventory inventory) {
+        LOG.infof("InventoryRepositoryImpl | inventory.productId=%s", inventory.idProduct());
+        InventoryEntity entity = em.createQuery(
+                "SELECT i FROM InventoryEntity i WHERE i.productId = :id",
+                InventoryEntity.class)
+                .setParameter("id", inventory.idProduct())
+                .getResultStream()
+                .findFirst()
+                .orElse(null);
 
-        // InventoryEntity entity = InventoryEntityMapper.toEntity(product);
-        InventoryEntity entity = em.find(InventoryEntity.class, inventory.id());
+        LOG.info("PASOOOOOOOOOOOOOOOOOO 1");
+
         if (entity != null) {
+            LOG.info("PASOOOOOOOOOOOOOOOOOO 2");
+            entity.setQuantity(inventory.quantity());
             entity = em.merge(entity);
+        } else {
+            LOG.info("PASOOOOOOOOOOOOOOOOOO 3");
+            entity = new InventoryEntity();
+            entity.setProductId(inventory.idProduct());
+            entity.setQuantity(inventory.quantity());
+
+            em.persist(entity);
         }
 
         return InventoryEntityMapper.toDomain(entity);

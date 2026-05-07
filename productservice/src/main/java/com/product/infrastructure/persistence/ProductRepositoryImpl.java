@@ -26,6 +26,7 @@ public class ProductRepositoryImpl implements ProductRepository {
 
         if (entity.getId() == null) {
             em.persist(entity);
+            em.flush();
         } else {
             entity = em.merge(entity);
         }

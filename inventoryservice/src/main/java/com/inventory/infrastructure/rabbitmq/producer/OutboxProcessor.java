@@ -1,13 +1,8 @@
 package com.inventory.infrastructure.rabbitmq.producer;
 
 import java.util.List;
-
-import org.eclipse.microprofile.reactive.messaging.Channel;
-import org.eclipse.microprofile.reactive.messaging.Emitter;
-
 import com.inventory.domain.repository.OutboxRepository;
 import com.inventory.infrastructure.rabbitmq.model.OutboxEvent;
-
 import io.quarkus.scheduler.Scheduled;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
